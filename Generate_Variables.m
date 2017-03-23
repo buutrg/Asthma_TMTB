@@ -14,8 +14,8 @@ PatientList = dir('s*');
 PatientList = {PatientList.name}';
 
 for t = startindex : endindex %length(PatientList)
-    cd(strcat(D_patientFolder,slash,PatientList{t}))
-    D_foldertest = strcat(D_patientFolder,slash,PatientList{t})
+    cd(strcat(D_patientFolder,slash,PatientList{t}));
+    D_foldertest = strcat(D_patientFolder,slash,PatientList{t});
     RecordsListX = dir('s*.hea');
     RecordsListX = {RecordsListX.name}';
     tempRX = cell2mat(cellfun(@(s) strcmp(s(24),'.'),RecordsListX, 'UniformOutput', false));

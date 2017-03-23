@@ -22,6 +22,8 @@ D_patientFolder = 'g:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE';
 D_info='g:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE\INFO';
 D_nRecords = 'g:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE\PRE_GENERATED RECORD';
 
+D_asthmaData = 'g:\MIMIC II WAVEFORM DATABASE\ASTHMA DATA';
+
 slash = '\';
 wfdb_toolbox = 'g:\matlab project\m files\wfdb-app-toolbox-0-9-9\mcode\';
 addpath(wfdb_toolbox);
