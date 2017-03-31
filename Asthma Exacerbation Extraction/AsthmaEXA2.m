@@ -8,11 +8,11 @@
 
 % cd('D:\thesis\MIMIC II DATABASE');
 cd(D_MIMIC_II)
-asth_duration_thresh = 60*2 ;  % (sec) asthma attack duration threshold = 2 min. 
+asth_duration_thresh = 60*2 ;  % (sec) asthma attack duration threshold = 2 min.
 % Document said few mins to hours or days
 
 
-%% find points that meet asthma features 
+%% find points that meet asthma features
 %CLASSIFICATION
 %MILD/ MODERATE: 92 <= SpO2 <= 95, 20 < RESP =< 25, PULSE < 110
 %ACUTE SEVERE:   92 <= SpO2 <= 95, RESP > 25, PULSE >=110
@@ -23,15 +23,15 @@ disp('Input 3 for LIFE THREATENING attack detection');
 disp('Input 4 for GENERAL ASTHMA attack detection');
 
 %MILD/ MODERATE
-        asth_locMM = find((n_SpO2 >=92 & n_SpO2 <=95 & n_RESP > 20 & n_RESP <=25 & n_PULSE <110));
+asth_locMM = find((n_SpO2 >=92 & n_SpO2 <=95 & n_RESP > 20 & n_RESP <=25 & n_PULSE <110));
 %ACUTE SEVERE
-        asth_locAS = find((n_SpO2 >=92 & n_SpO2 <=95 & n_RESP > 25 & n_PULSE >= 110));
+asth_locAS = find((n_SpO2 >=92 & n_SpO2 <=95 & n_RESP > 25 & n_PULSE >= 110));
 %LIFE THREATENING
-        asth_locLT = find(n_SpO2 <92);
+asth_locLT = find(n_SpO2 <92);
 %GENERAL CASE
-        asth_locGE = find((n_SpO2 >=92 & n_SpO2 <=95 & n_RESP > 20 & n_RESP <=25 & n_PULSE <110)| n_SpO2 < 92 |(n_SpO2 >=92 & n_SpO2 <=95 & n_RESP > 25 & n_PULSE >= 110));
+asth_locGE = find((n_SpO2 >=92 & n_SpO2 <=95 & n_RESP > 20 & n_RESP <=25 & n_PULSE <110)| n_SpO2 < 92 |(n_SpO2 >=92 & n_SpO2 <=95 & n_RESP > 25 & n_PULSE >= 110));
 
-fprintf('Asthma duration threshold: %d\n', asth_duration_thresh); 
+fprintf('Asthma duration threshold: %d\n', asth_duration_thresh);
 asth_ann = zeros(1,length(n_t0)); %has to be 1 and 0 for the following lines
 asth_ann(asth_locGE) = 1;
 normal_ann = ~asth_ann;
@@ -52,15 +52,15 @@ m_attackPoint = n_attackPoint* n_interval/m_interval;       % refer to point of 
 asth_ann(asth_ann==0) = NaN;      %change back to NaN
 asth_severity = zeros(3,length(n_attackPoint));
 for n = 1:size(n_attackPoint,2)
-    if length(find(asth_locMM == n_attackPoint(1,n)))==1 
-    asth_severity(1,n) = 1;
+    if length(find(asth_locMM == n_attackPoint(1,n)))==1
+        asth_severity(1,n) = 1;
     elseif length(find(asth_locAS == n_attackPoint(1,n)))==1
-    asth_severity(2,n) = 1;
+        asth_severity(2,n) = 1;
     elseif length(find(asth_locLT == n_attackPoint(1,n)))==1
-    asth_severity(3,n) = 1;
+        asth_severity(3,n) = 1;
     end
 end
- 
+
 % Detect 3 normal period
 ann2 = diff([0 ~normal_ann==0 0]);
 pE1 = find(ann2==-1) - 1; %end of ones sequence
