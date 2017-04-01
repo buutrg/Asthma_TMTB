@@ -1,6 +1,7 @@
 
 tmser = 1:NN;
 
+output = '123.csv';
 FILE = fopen(output, 'w');
 firstline = ['\t Part \t Dimension \t Time delay \t Epsilon \t',...
         'Recurrence rate \t Determinism \t  Averaged diagonal length \t', ...
