@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%Configuring%%%%%%%%%%%%%%
 clc;
 clear all; close all;
-
+addpath('g:\matlab project\Asthma_Detection-master'); %compulsory to the folder Asthma_Detection which contains Config.m at start of this program
 run('Config.m');
 cd(D_Asthma_Detection);
 
@@ -28,23 +28,23 @@ for t = startindex : endindex %length(PatientList)
         fileNameLIST = {fileNameLIST};
     end
     for fileIndex = 1 : length(fileNameLIST)
-        fileName = fileNameLIST{fileIndex};
+        fileName = fileNameLIST{fileIndex}; %get filename of the [fileIndex]-th patient. Eg. 's00033-2559-01-25-12-35.hea'
         %[~,~,recordList] = xlsread('RAW Matched Subset SubjectID.xlsx',2); recordList = recordList(2:end,3);
         %[~,~,ICD9_description]=xlsreadm_Name = strcat(recordName,'m');('Patients_CHECKLIST.xlsx',4);   %get patient list with IDC9 description
         %record info
         recordName = fileName(1:23);
         m_Name = strcat(recordName,'m');            n_Name = strcat(recordName,'nm');
-        m_infoName = strcat(m_Name,'.info');       n_infoName = strcat(n_Name,'.info');
+        m_infoName = strcat(m_Name,'.info');        n_infoName = strcat(n_Name,'.info');
         m_headerName = strcat(recordName,'.hea');   n_headerName = strcat(recordName,'n.hea');
         m_matName = strcat(m_Name, '.mat');         n_matName = strcat(n_Name, '.mat');
         %mn_ava=[cell2mat(strfind(recordList,m_Name)), cell2mat(strfind(recordList,n_Name))];
         close all;
         %patient info
-        patientID = fileName(1:6);
+        patientID = fileName(1:6); %get name of the [fileIndex]-th patient Eg. S00033
          L_alternateDownload = strcat('mimic2wdb/matched/',patientID,'/',recordName);
-        D_asthDataP = strcat(D_asthDATA,slash,patientID);
-        D_asthDataR = strcat(D_asthDataP,slash,recordName);
-        D_recordFolder = strcat(D_patientFolder,slash,patientID);
+        D_asthDataP = strcat(D_asthDATA,slash,patientID); %dir to ptn's overall data (level 1). Eg. 'g:\matlab project\Asthma_Detection-master\Asthma Data\s00033'
+        D_asthDataR = strcat(D_asthDataP,slash,recordName); %dir to ptn's data (level 2). Eg. 'g:\matlab project\Asthma_Detection-master\Asthma Data\s00033\s00033-2559-01-25-12-35'
+        D_recordFolder = strcat(D_patientFolder,slash,patientID); %dir to ptn's RAW MIMIC Data folder. Eg. 'g:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE\s00033'
         mkdir(D_asthDATA,patientID); %create DATA Patient folder
         mkdir(D_asthDataP,recordName); %create DATA Patient folder
         patientNo = find(cell2mat(ICD9_description(2:end,2)) == str2double(patientID(2:end))); %No of patient in 182 total
@@ -56,7 +56,7 @@ for t = startindex : endindex %length(PatientList)
         disp(['ICD9 Description:      ' , patientDescription ]);
         
         %save patient info
-        cd(D_asthDataP);
+        cd(D_asthDataP); %load overall data's direction -> load INFO file which contains the below line
         try load(strcat('INFO_',patientID,'.mat'))
         catch
             save(strcat('INFO_',patientID,'.mat'),'patientNo','patientID','patientDescription');
@@ -64,17 +64,17 @@ for t = startindex : endindex %length(PatientList)
         
         %% READ header & info file of M RECORD
         %open the header file in text mode ('rt')
-        cd(D_recordFolder);
-        m_heaFid = fopen(m_headerName, 'rt');
+        cd(D_recordFolder); %load RAW MIMIC II's ptn direction
+        m_heaFid = fopen(m_headerName, 'rt'); %open head file which contains: <age> <sex>
         if m_heaFid < 1
             error('Cant find header file');
         end
-        m_header = textscan(fgetl(m_heaFid), '%s %f %f %d %s %s','Delimiter',' ');    %get first line from header
-        m_noSig = m_header{2};                                                        %number of signals
-        m_fs = m_header{3}; m_interval = 1/m_fs;                                      %sampling f & interval
-        m_totalSample = m_header{4};                                                  %total sample for this record
+        m_header = textscan(fgetl(m_heaFid), '%s %f %f %d %s %s','Delimiter',' ');    %get first line from header which contains: %1. name
+        m_noSig = m_header{2};                                                          %2. number of signals
+        m_fs = m_header{3}; m_interval = 1/m_fs;                                        %3. sampling f & interval: time for each interval
+        m_totalSample = m_header{4};                                                    %4. total sample for this record
         m_totalSample = double(m_totalSample);
-        [m_recordStartTime] = sscanf(char(m_header{5}),'%f:%f:%f');
+        [m_recordStartTime] = sscanf(char(m_header{5}),'%f:%f:%f');                     %5. record Start time
         m_recordDuration = m_totalSample/m_fs;       %duration in seconds
         m_recordDurationDAY = m_recordDuration/(24*3600);
         fclose(m_heaFid);
@@ -87,8 +87,8 @@ for t = startindex : endindex %length(PatientList)
         end
         
         %Read lines from info file
-        [m_startTime] = textscan(fgetl(m_infoFid), '%s %s','Delimiter','[');
-        m_startTime = textscan(char(m_startTime{2}),'%s %s','Delimiter',' ');
+        [m_startTime] = textscan(fgetl(m_infoFid), '%s %s','Delimiter','[');        %get first line from info file which contains: name and start time
+        m_startTime = textscan(char(m_startTime{2}),'%s %s','Delimiter',' ');       %get the start time
         m_startTime = m_startTime{1};    %array, if text put "char(..."
         fgetl(m_infoFid); fgetl(m_infoFid); %skip 3 line of info file
         fgetl(m_infoFid);
@@ -122,14 +122,14 @@ for t = startindex : endindex %length(PatientList)
         
         %% DIVIDE M FILE INTO SECTION
         m_sampSegMin = 60 ;
-        m_sampSeg = m_sampSegMin * m_fs * 60;
+        m_sampSeg = m_sampSegMin * m_fs * 60;       %duration (in minute) of sample
         if m_sampSeg >= m_totalSample
             m_sampSeg = m_totalSample;
         end
-        m_noSeg = ceil(m_totalSample/m_sampSeg);
+        m_noSeg = ceil(m_totalSample/m_sampSeg);    %number of Segment
         
         %% READ N RECORD from old .mat file (no header)
-        cd(D_nRecords);
+        cd(D_nRecords); %cd to g:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE\PRE_GENERATED RECORD
         try
             load(n_matName);                    %load data in .n file into workspace
         catch

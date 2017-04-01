@@ -33,24 +33,25 @@ asth_locGE = find((n_SpO2 >=92 & n_SpO2 <=95 & n_RESP > 20 & n_RESP <=25 & n_PUL
 
 fprintf('Asthma duration threshold: %d\n', asth_duration_thresh);
 asth_ann = zeros(1,length(n_t0)); %has to be 1 and 0 for the following lines
-asth_ann(asth_locGE) = 1;
-normal_ann = ~asth_ann;
+asth_ann(asth_locGE) = 1; %mark GENERAL CASE = 1 ELSE = 0
+normal_ann = ~asth_ann; %normal (not General case)
 
 %Detect asthma period
-ann1 = diff([0 ~asth_ann==0 0]);
-pE = find(ann1==-1) - 1; %end of ones sequence
+ann1 = diff([0 ~asth_ann==0 0]); %diff in asth_ann | ~asth_ann=0 <=> normal=0 <=> General case | ann1[i] = asth_ann[i] - asth_ann[i-1]
+%ann1 = diff([0 asth_ann==1 0]); %diff in asth_ann | ~asth_ann=0 <=> normal=0 <=> General case
+pE = find(ann1==-1) - 1; %end of ones sequence 
 pS = find(ann1==1);       %start of ones sequence
-asth_duration = pE-pS+1;    % refer to point, not seconds
+asth_duration = pE-pS+1;    % refer to length of 2 point, not seconds
 
 %Filter asthma period that less than thresh. Document said few mins to hours or days
-res = find((asth_duration)*n_interval >= asth_duration_thresh);
-n_asth_duration = asth_duration(res);
-n_attackPoint = [pS(res);pE(res)] ;                         % refer to point
-m_asth_duration = n_asth_duration * n_interval/m_interval;
-m_attackPoint = n_attackPoint* n_interval/m_interval;       % refer to point of WHOLE M RECORD
+res = find(asth_duration*n_interval >= asth_duration_thresh); %find index of length*second > threshold <=> asth_duration >= 2
+n_asth_duration = asth_duration(res);                       %filter length duration > threshold | only contains >= 2
+n_attackPoint = [pS(res);pE(res)] ;                         %refer to point
+m_asth_duration = n_asth_duration * n_interval/m_interval;  %
+m_attackPoint = n_attackPoint* n_interval/m_interval;       %refer to point of WHOLE M RECORD
 
 asth_ann(asth_ann==0) = NaN;      %change back to NaN
-asth_severity = zeros(3,length(n_attackPoint));
+asth_severity = zeros(3,length(n_attackPoint)); %row of asth_severity equivalent to 1: MM, 2: AS, 3:LT
 for n = 1:size(n_attackPoint,2)
     if length(find(asth_locMM == n_attackPoint(1,n)))==1
         asth_severity(1,n) = 1;

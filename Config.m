@@ -34,6 +34,7 @@ if choose_tmp == 1
     slash = '\';
     wfdb_toolbox = 'g:\matlab project\m files\wfdb-app-toolbox-0-9-9\mcode\';
     addpath(wfdb_toolbox);
+    
 end
 if choose_tmp == 2
     D_Asthma_Detection = 'g:\matlab project\Asthma_Detection-master';
@@ -59,6 +60,9 @@ if choose_tmp == 2
     slash = '\';
     wfdb_toolbox = 'g:\matlab project\m files\wfdb-app-toolbox-0-9-9\mcode\';
     addpath(wfdb_toolbox);
+    
+    CRP_tools = 'g:\matlab project\CRP toolbox\crptool';
+    
 end;
 
 if choose_tmp == 3
@@ -79,4 +83,6 @@ if choose_tmp == 3
     slash = '/';
     wfdb_toolbox = '/media/tmtb/LinuxDrive/matlab project/Asthma_TMTB/wfdb-app-toolbox-0-9-9/mcode/';
     addpath(wfdb_toolbox);
+    
+    CRP_tools = '/media/tmtb/LinuxDrive/matlab project/CRP toolbox/crptool';
 end;
