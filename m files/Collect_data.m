@@ -55,12 +55,22 @@ for t = startindex : endindex %length(PatientList)
         
         %% READ RECORDS INFO
         cd(D_asthDataR);    %Eg. g:\matlab project\Asthma_Detection-master\Asthma Data\s00033\s00033-2559-01-25-12-35
-        load(strcat('INFO_',recordName,'.mat')) %it contains 'sig_choose','m_noSeg','m_sampSeg','m_totalSample','m_fs','n_fs','m_startTime','n_startTime','m_units','n_units','recordName','n_signal','m_signal','n_gain','m_gain','m_base','n_base','m_noSig','n_recordDuration','m_recordDuration','m_recordDurationDAY','n_recordTime'
+        load(strcat('INFO_',recordName,'.mat'))
+        %%%%%contains
+        %%%%%%%%'sig_choose','m_noSeg','m_sampSeg','m_totalSample',
+        %%%%%%%%'m_fs','n_fs','m_startTime','n_startTime','m_units','n_units','recordName',
+        %%%%%%%%'n_signal','m_signal','n_gain','m_gain','m_base','n_base','m_noSig',
+        %%%%%%%%'n_recordDuration','m_recordDuration','m_recordDurationDAY','n_recordTime'
+        
+        
         load(strcat(recordName,'n','.mat')) %contains 'n_t0','n_RESP','n_SpO2','n_PULSE','n_PLETH','n_fs','n_interval'
         
         %% GENERATE ASTHMA ATTACK TIME
         addpath(D_AsthmaEXA);
-        load(strcat('AIF_',recordName,'.mat')); %contains 'n_attackPoint','m_attackPoint','asth_severity','asth_duration','m_asth_duration','n_asth_duration','asth_duration_thresh','asth_locAS', 'asth_locGE', 'asth_locLT', 'asth_locMM'
+        load(strcat('AIF_',recordName,'.mat')); 
+        %%%%%contains 
+        %%%%%%%%'n_attackPoint','m_attackPoint','asth_severity','asth_duration','m_asth_duration','n_asth_duration','asth_duration_thresh',
+        %%%%%%%%'asth_locAS', 'asth_locGE', 'asth_locLT', 'asth_locMM'
         
         %% READ M RECORD / GENERATE
         
@@ -71,7 +81,7 @@ for t = startindex : endindex %length(PatientList)
             addpath(D_generateData)
             load(tempDATAname) %contains 'm_t0','m_II','m_PLETH','m_fs','mSecStart','mSecEnd','mSecDuration','N','N0');
             
-            run('RP_Asthma.m');
+            run RP_Asthma.m;
         end
         
         

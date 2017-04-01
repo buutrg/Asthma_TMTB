@@ -8,9 +8,9 @@
 % 1: windows cua Ngan
 % 2: windows cua Buu
 % 3: ubuntu cua Buu
-choose_tmp = 2;
+choose_tmp = 3;
 
-if choose_tmp == 1
+if choose_tmp == 1;
     D_Asthma_Detection = 'g:\matlab project\Asthma_Detection-master';
     D_generateData = 'g:\matlab project\Asthma_Detection-master\GENERATE DATA CODE';
     D_AsthmaEXA = 'g:\matlab project\Asthma_Detection-master\Asthma Exacerbation Extraction';
@@ -66,23 +66,23 @@ if choose_tmp == 2
 end;
 
 if choose_tmp == 3
-    D_Asthma_Detection = '/media/tmtb/LinuxDrive/matlab project/Asthma_Detection-master';
-    D_generateData = '/media/tmtb/LinuxDrive/matlab project/Asthma_Detection-master/GENERATE DATA CODE';
-    D_AsthmaEXA = '/media/tmtb/LinuxDrive/matlab project/Asthma_Detection-master/Asthma Exacerbation Extraction';
-    D_asthDATA = '/media/tmtb/LinuxDrive/matlab project/Asthma_Detection-master/Asthma Data'; %save 2min files
+    D_Asthma_Detection = '/mnt/LinuxDrive/matlab project/Asthma_Detection-master';
+    D_generateData = '/mnt/LinuxDrive/matlab project/Asthma_Detection-master/GENERATE DATA CODE';
+    D_AsthmaEXA = '/mnt/LinuxDrive/matlab project/Asthma_Detection-master/Asthma Exacerbation Extraction';
+    D_asthDATA = '/mnt/LinuxDrive/matlab project/Asthma_Detection-master/Asthma Data'; %save 2min files
     
   
     
-    D_MIMIC_II = '/media/tmtb/LinuxDrive/MIMIC II WAVEFORM DATABASE';
-    D_patientFolder = '/media/tmtb/LinuxDrive/MIMIC II WAVEFORM DATABASE/RAW MIMIC II DATABASE';
-    D_info='/media/tmtb/LinuxDrive/MIMIC II WAVEFORM DATABASE/RAW MIMIC II DATABASE/INFO';
-    D_nRecords = '/media/tmtb/LinuxDrive/MIMIC II WAVEFORM DATABASE/RAW MIMIC II DATABASE/PRE_GENERATED RECORD';
+    D_MIMIC_II = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE';
+    D_patientFolder = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/RAW MIMIC II DATABASE';
+    D_info='/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/RAW MIMIC II DATABASE/INFO';
+    D_nRecords = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/RAW MIMIC II DATABASE/PRE_GENERATED RECORD';
     
-    D_asthmaData = '/media/tmtb/LinuxDrive/MIMIC II WAVEFORM DATABASE/ASTHMA DATA';
+    D_asthmaData = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/ASTHMA DATA';
     
     slash = '/';
-    wfdb_toolbox = '/media/tmtb/LinuxDrive/matlab project/Asthma_TMTB/wfdb-app-toolbox-0-9-9/mcode/';
+    wfdb_toolbox = '/mnt/LinuxDrive/matlab project/Asthma_TMTB/wfdb-app-toolbox-0-9-9/mcode/';
     addpath(wfdb_toolbox);
     
-    CRP_tools = '/media/tmtb/LinuxDrive/matlab project/CRP toolbox/crptool';
+    CRP_tools = '/mnt/LinuxDrive/matlab project/CRP toolbox/crptool';
 end;
