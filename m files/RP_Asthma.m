@@ -12,6 +12,8 @@ firstline = ['\t Part \t Dimension \t Time delay \t Epsilon \t',...
 fprintf(FILE,firstline,'\n');
 fclose(FILE);
 
+addpath(CRP_tools);
+
 for ch = 1:nu
     tmser1 = (1:10*256);
     

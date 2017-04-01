@@ -71,44 +71,10 @@ for t = startindex : endindex %length(PatientList)
             addpath(D_generateData)
             load(tempDATAname) %contains 'm_t0','m_II','m_PLETH','m_fs','mSecStart','mSecEnd','mSecDuration','N','N0');
             
-            cd(CRP_tools);
-            kk = x1(tmser1, ch);
-            
-            dmsn_tmp = fnn(kk);
-            for ii = 1:10
-                if dmsn_tmp(ii) == 0
-                    dmsn = ii-1;
-                    break;
-                end;
-            end;
-            midelay = mi(kk, 20, 200);
-            for ii = 1:200-1
-                if ((midelay(1, 1, ii) < midelay(1, 1,ii+1)) && (midelay(1, 1, ii) > midelay(1, 1, ii-1)))
-                    checkt = ii;
-                    break;
-                end;
-            end;
-            
-            tdelay = checkt;
-            [maxd, tmp] = pss(kk, dmsn, tdelay);
-            eps = floor(0.1 * maxd);
-            
-            tt = crqa(x1(tmser1,ch), dmsn, tdelay, eps, 'euc', 'nogui');
-            tmser1 = tmser1 + 10*256;
-            %         -----------------------------------
-            FILE = fopen(output, 'a');
-            fprintf(FILE, '%s\t', filename);
-            %         fprintf(FILE, '%d\t', part);
-            fprintf(FILE, '%d \t %d \t %d \t %3.2f \t', part, dmsn, tdelay, eps);
-            fprintf(FILE, '%d \t', tt);
-            fprintf(FILE, '\n');
-            fclose(FILE);
-            %         -----------------------------------
-            fprintf('%d %d\n', ch, part);
-            
+            run('RP_Asthma.m');
         end
         
-        cd(CRP_tool);
+        
         
         
         %% END BASIC INFO
