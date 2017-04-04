@@ -8,31 +8,28 @@
 % 1: windows cua Ngan
 % 2: windows cua Buu
 % 3: ubuntu cua Buu
-choose_tmp = 3;
+choose_tmp = 1;
 
 if choose_tmp == 1;
-    D_Asthma_Detection = 'g:\matlab project\Asthma_Detection-master';
-    D_generateData = 'g:\matlab project\Asthma_Detection-master\GENERATE DATA CODE';
-    D_AsthmaEXA = 'g:\matlab project\Asthma_Detection-master\Asthma Exacerbation Extraction';
+    D_Asthma_Detection = 'E:\Buu';
+    D_generateData = 'E:\Buu\GENERATE DATA CODE';
+    D_AsthmaEXA = 'E:\Buu\Asthma Exacerbation Extraction';
     
     % Create new folder
-    % D_asthDATA = 'D:\Project\Asthma Detection\Asthma Data'; %save 2min files
-    D_asthDATA = 'g:\matlab project\Asthma_Detection-master\Asthma Data'; %save 2min files
+    D_asthDATA = 'E:\Buu\Asthma Data'; %save 2min files
     
     % In database folder
     % D_patientFolder = 'D:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE';
     % D_info='D:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE\INFO';
     % D_nRecords = 'D:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE\PRE_GENERATED RECORD';
     
-    D_MIMIC_II = 'g:\MIMIC II WAVEFORM DATABASE';
-    D_patientFolder = 'g:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE';
-    D_info='g:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE\INFO';
-    D_nRecords = 'g:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE\PRE_GENERATED RECORD';
-    
-    D_asthmaData = 'g:\MIMIC II WAVEFORM DATABASE\ASTHMA DATA';
-    
+    D_MIMIC_II = 'D:\MIMIC II WAVEFORM DATABASE';
+    D_patientFolder = 'D:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE';
+    D_info='D:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE\INFO';
+    D_nRecords = 'D:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE\PRE_GENERATED RECORD';
+    D_asthmaData = 'D:\MIMIC II WAVEFORM DATABASE\ASTHMA DATA';
     slash = '\';
-    wfdb_toolbox = 'g:\matlab project\m files\wfdb-app-toolbox-0-9-9\mcode\';
+    wfdb_toolbox = 'E:\Buu\wfdb-app-toolbox-0-9-9\mcode';
     addpath(wfdb_toolbox);
     
 end
