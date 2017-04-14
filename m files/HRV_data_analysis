@@ -1,0 +1,13 @@
+%%%%%%%%%%%%%%%%%%%%Configuring%%%%%%%%%%%%%%
+clc;
+clear all; close all;
+addpath('/mnt/LinuxDrive/matlab project/Asthma_TMTB/m files');
+run('Config.m');
+
+startindex=1;endindex=179;
+PatientList = dir('s*');
+PatientList = {PatientList.name}';
+
+for t = startindex : endindex %length(PatientList)
+
+end
