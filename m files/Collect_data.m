@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%Configuring%%%%%%%%%%%%%%
 clc;
 clear all; close all;
-addpath('g:\matlab project\Asthma_Detection-master');
+addpath('/mnt/LinuxDrive/matlab project/Asthma_TMTB/m files');
 run('Config.m');
 cd(D_Asthma_Detection);
 
@@ -9,7 +9,7 @@ addpath(D_generateData); load('Patient_Record_ICD9.mat');
 cd(D_patientFolder);
 
 %%%%%%%%%%%%%%%%%%%%Start%%%%%%%%%%%%%%
-startindex=1;endindex=10;
+startindex=1;endindex=179;
 PatientList = dir('s*');
 PatientList = {PatientList.name}';
 
@@ -54,7 +54,8 @@ for t = startindex : endindex %length(PatientList)
         load(strcat('INFO_',patientID,'.mat')) %contains 'patientNo','patientID','patientDescription'
         
         %% READ RECORDS INFO
-        cd(D_asthDataR);    %Eg. g:\matlab project\Asthma_Detection-master\Asthma Data\s00033\s00033-2559-01-25-12-35
+        cd(D_asthDataR);    
+        %Eg. g:\matlab project\Asthma_TMTB\Asthma Data\s00033\s00033-2559-01-26-13-11\INFO_s00033-2559-01-26-13-11.mat
         load(strcat('INFO_',recordName,'.mat'))
         %%%%%contains
         %%%%%%%%'sig_choose','m_noSeg','m_sampSeg','m_totalSample',
@@ -62,27 +63,21 @@ for t = startindex : endindex %length(PatientList)
         %%%%%%%%'n_signal','m_signal','n_gain','m_gain','m_base','n_base','m_noSig',
         %%%%%%%%'n_recordDuration','m_recordDuration','m_recordDurationDAY','n_recordTime'
         
-        
+%       Eg. g:\matlab project\Asthma_TMTB\Asthma Data\s00033\s00033-2559-01-26-13-11\s00033-2559-01-26-13-11n.mat
         load(strcat(recordName,'n','.mat')) %contains 'n_t0','n_RESP','n_SpO2','n_PULSE','n_PLETH','n_fs','n_interval'
-        
-        %% GENERATE ASTHMA ATTACK TIME
-        addpath(D_AsthmaEXA);
-        load(strcat('AIF_',recordName,'.mat')); 
-        %%%%%contains 
-        %%%%%%%%'n_attackPoint','m_attackPoint','asth_severity','asth_duration','m_asth_duration','n_asth_duration','asth_duration_thresh',
-        %%%%%%%%'asth_locAS', 'asth_locGE', 'asth_locLT', 'asth_locMM'
-        
+%         
+%         %% GENERATE ASTHMA ATTACK TIME
+%         addpath(D_AsthmaEXA);
+%         load(strcat('AIF_',recordName,'.mat'));
+%         %%%%%contains
+%         %%%%%%%%'n_attackPoint','m_attackPoint','asth_severity','asth_duration','m_asth_duration','n_asth_duration','asth_duration_thresh',
+%         %%%%%%%%'asth_locAS', 'asth_locGE', 'asth_locLT', 'asth_locMM'
+%         
         %% READ M RECORD / GENERATE
         
-        %split into 2 minute files
-        for m_section = 1: m_noSeg
-            
-            tempDATAname = strcat(recordName,'_A',sprintf('%04d',m_section),'.mat');
-            addpath(D_generateData)
-            load(tempDATAname) %contains 'm_t0','m_II','m_PLETH','m_fs','mSecStart','mSecEnd','mSecDuration','N','N0');
-            
-            run RP_Asthma.m;
-        end
+        cd(m_files)
+        run('RP_Asthma.m');
+        
         
         
         

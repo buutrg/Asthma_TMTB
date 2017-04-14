@@ -81,10 +81,10 @@ m_normalPoint = n_normalPoint* n_interval/m_interval;       % refer to point of 
 % plot
 % title_str=strcat('Record..',n_Name,'>>>','Start:..',n_startTime,'>>>','Duration:..',datestr(n_recordDurationDAY,'DD:HH:MM:SS'));
 figure('name','ASTHMA ATTACK TIME');
-str=strcat('Patient ID : ', num2str(patientID))
-str2=strcat('Record number : ', num2str(recordName))
+str=strcat('Patient ID : ', num2str(patientID));
+str2=strcat('Record number : ', num2str(recordName));
 n_ax1 = subplot(4,1,1);
-plot(n_t0(1:3),n_RESP(1:3),'r');title({str;str2})
+plot(n_t0,n_RESP,'r');title({str;str2})
 % title(title_str);
 refline(0,20);
 xlabel('Time (sec)');ylabel('RESP(pm)');

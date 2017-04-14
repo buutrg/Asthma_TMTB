@@ -8,7 +8,7 @@
 % 1: windows cua Ngan
 % 2: windows cua Buu
 % 3: ubuntu cua Buu
-choose_tmp = 1;
+choose_tmp = 3;
 
 if choose_tmp == 1;
     D_Asthma_Detection = 'E:\Buu';
@@ -34,13 +34,14 @@ if choose_tmp == 1;
     
 end
 if choose_tmp == 2
-    D_Asthma_Detection = 'g:\matlab project\Asthma_Detection-master';
-    D_generateData = 'g:\matlab project\Asthma_Detection-master\GENERATE DATA CODE';
-    D_AsthmaEXA = 'g:\matlab project\Asthma_Detection-master\Asthma Exacerbation Extraction';
+    D_Asthma_Detection = 'g:\matlab project\Asthma_TMTB';
+    D_generateData = 'g:\matlab project\Asthma_TMTB\GENERATE DATA CODE';
+    D_AsthmaEXA = 'g:\matlab project\Asthma_TMTB\Asthma Exacerbation Extraction';
+    m_files = 'g:\matlab project\Asthma_TMTB\m files';
     
     % Create new folder
     % D_asthDATA = 'D:\Project\Asthma Detection\Asthma Data'; %save 2min files
-    D_asthDATA = 'g:\matlab project\Asthma_Detection-master\Asthma Data'; %save 2min files
+    D_asthDATA = 'g:\matlab project\Asthma_TMTB\Asthma Data'; %save 2min files
     
     % In database folder
     % D_patientFolder = 'D:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE';
@@ -63,17 +64,19 @@ if choose_tmp == 2
 end;
 
 if choose_tmp == 3
-    D_Asthma_Detection = '/mnt/LinuxDrive/matlab project/Asthma_Detection-master';
-    D_generateData = '/mnt/LinuxDrive/matlab project/Asthma_Detection-master/GENERATE DATA CODE';
-    D_AsthmaEXA = '/mnt/LinuxDrive/matlab project/Asthma_Detection-master/Asthma Exacerbation Extraction';
-    D_asthDATA = '/mnt/LinuxDrive/matlab project/Asthma_Detection-master/Asthma Data'; %save 2min files
-    
+    D_Asthma_Detection = '/mnt/LinuxDrive/matlab project/Asthma_TMTB';
+    D_generateData = '/mnt/LinuxDrive/matlab project/Asthma_TMTB/GENERATE DATA CODE';
+    D_AsthmaEXA = '/mnt/LinuxDrive/matlab project/Asthma_TMTB/Asthma Exacerbation Extraction';
+    D_asthDATA = '/mnt/LinuxDrive/matlab project/Asthma_TMTB/Asthma Data'; %save 2min files
+    m_files = '/mnt/LinuxDrive/matlab project/Asthma_TMTB/m files';
   
     
     D_MIMIC_II = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE';
     D_patientFolder = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/RAW MIMIC II DATABASE';
     D_info='/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/RAW MIMIC II DATABASE/INFO';
     D_nRecords = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/RAW MIMIC II DATABASE/PRE_GENERATED RECORD';
+    D_2min = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/2 MINUTES WINDOW DATA/2MW HRV MAT DATA';
+    
     
     D_asthmaData = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/ASTHMA DATA';
     
