@@ -1,9 +1,8 @@
 %% FOLDER & LINKS & FILELIST
-D_asthDATA = 'E:\ASTHMA DATA';
-D_PHRVText = 'E:\PPG HRV Text';
-D_EHRVText = 'E:\ECG HRV Text';
-D_HRVData = 'E:\HRV DATA';
-addpath(genpath('E:\Google Drive\Documents\Academic\Pre-thesis\MIMIC II DATABASE')); % add code & subfolders
+D_PHRVText = 'D:\MIMC II WAVEFORMI DATABASE\2 MINUTES WINDOW DATA\2MW ORIGINAL HRV TXT\PPG HRV Text';
+D_EHRVText = 'D:\MIMIC II WAVEFORM DATABASE\2 MINUTES WINDOW DATA\2MW ORIGINAL HRV TXT\ECG HRV Text';
+D_HRVData = 'D:\Buu\2MW HRV MAT DATA';
+%addpath(genpath('D:\MIMIC II WAVEFORM DATABASE')); % add code & subfolders
 
 %Get folder link
 cd(D_asthDATA);

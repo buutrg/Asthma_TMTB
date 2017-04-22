@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%Configuring%%%%%%%%%%%%%%
 clc;
 clear all; close all;
-addpath('/mnt/LinuxDrive/matlab project/Asthma_TMTB/m files');
+addpath('D:\Buu\m files');
 run('Config.m');
 cd(D_Asthma_Detection);
 

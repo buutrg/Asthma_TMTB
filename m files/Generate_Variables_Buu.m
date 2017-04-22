@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%Configuring%%%%%%%%%%%%%%
 clc;
 clear all; close all;
-addpath('g:\matlab project\Asthma_Detection-master');
+addpath('D:\Buu\m files');
 run('Config.m');
 cd(D_Asthma_Detection);
 
