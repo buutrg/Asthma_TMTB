@@ -8,8 +8,8 @@
 % 1: windows cua Ngan
 % 2: windows cua Buu
 % 3: ubuntu cua Buu
-<<<<<<< HEAD
-choose_tmp = 3;
+
+choose_tmp = 2;
 
 if choose_tmp == 1;
     D_Asthma_Detection = 'E:\Buu';
@@ -18,17 +18,14 @@ if choose_tmp == 1;
     
     % Create new folder
     D_asthDATA = 'E:\Buu\Asthma Data'; %save 2min files
-=======
-choose_tmp = 1;
 
-if choose_tmp == 1;
     D_Asthma_Detection = 'D:\Buu';
     D_generateData = 'D:\Buu\GENERATE DATA CODE';
     D_AsthmaEXA = 'D:\Buu\Asthma Exacerbation Extraction';
     m_files = 'D:\Buu\m files'
     % Create new folder
     D_asthDATA = 'D:\Buu\Asthma Data'; %save 2min files
->>>>>>> 0b3ea19ac3d94282e30f2fb9f4429a276a928103
+
     
     % In database folder
     % D_patientFolder = 'D:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE';
@@ -41,23 +38,23 @@ if choose_tmp == 1;
     D_nRecords = 'D:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE\PRE_GENERATED RECORD';
     D_asthmaData = 'D:\MIMIC II WAVEFORM DATABASE\ASTHMA DATA';
     slash = '\';
-<<<<<<< HEAD
+
     wfdb_toolbox = 'E:\Buu\wfdb-app-toolbox-0-9-9\mcode';
-=======
+
     wfdb_toolbox = 'D:\Buu\wfdb-app-toolbox-0-9-9\mcode';
->>>>>>> 0b3ea19ac3d94282e30f2fb9f4429a276a928103
+
     addpath(wfdb_toolbox);
     
 end
 if choose_tmp == 2
-    D_Asthma_Detection = 'g:\matlab project\Asthma_TMTB';
-    D_generateData = 'g:\matlab project\Asthma_TMTB\GENERATE DATA CODE';
-    D_AsthmaEXA = 'g:\matlab project\Asthma_TMTB\Asthma Exacerbation Extraction';
-    m_files = 'g:\matlab project\Asthma_TMTB\m files';
+    D_Asthma_Detection = 'g:\GitHub\Asthma_TMTB';
+    D_generateData = 'g:\GitHub\Asthma_TMTB\GENERATE DATA CODE';
+    D_AsthmaEXA = 'g:\GitHub\Asthma_TMTB\Asthma Exacerbation Extraction';
+    m_files = 'g:\GitHub\Asthma_TMTB\m files';
     
     % Create new folder
     % D_asthDATA = 'D:\Project\Asthma Detection\Asthma Data'; %save 2min files
-    D_asthDATA = 'g:\matlab project\Asthma_TMTB\Asthma Data'; %save 2min files
+    D_asthDATA = 'g:\GitHub\Asthma_TMTB\Asthma Data'; %save 2min files
     
     % In database folder
     % D_patientFolder = 'D:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE';
@@ -68,14 +65,15 @@ if choose_tmp == 2
     D_patientFolder = 'g:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE';
     D_info='g:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE\INFO';
     D_nRecords = 'g:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE\PRE_GENERATED RECORD';
+    D_2min = 'g:\MIMIC II WAVEFORM DATABASE\2 MINUTES WINDOW DATA\2MW ORIGINAL HRV TXT\ECG HRV Text\';
     
     D_asthmaData = 'g:\MIMIC II WAVEFORM DATABASE\ASTHMA DATA';
     
     slash = '\';
-    wfdb_toolbox = 'g:\matlab project\m files\wfdb-app-toolbox-0-9-9\mcode\';
+    wfdb_toolbox = 'g:\GitHub\m files\wfdb-app-toolbox-0-9-9\mcode\';
     addpath(wfdb_toolbox);
     
-    CRP_tools = 'g:\matlab project\CRP toolbox\crptool';
+    CRP_tools = 'g:\GitHub\CRP toolbox\crptool';
     
 end;
 
@@ -91,12 +89,10 @@ if choose_tmp == 3
     D_patientFolder = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/RAW MIMIC II DATABASE';
     D_info='/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/RAW MIMIC II DATABASE/INFO';
     D_nRecords = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/RAW MIMIC II DATABASE/PRE_GENERATED RECORD';
-<<<<<<< HEAD
     D_2min = '/home/thanhbuu/2MW ORIGINAL HRV TXT/ECG HRV Text';
-=======
-    D_2min = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/2 MINUTES WINDOW DATA/2MW HRV MAT DATA';
->>>>>>> 0b3ea19ac3d94282e30f2fb9f4429a276a928103
-    
+
+%     D_2min = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/2 MINUTES WINDOW DATA/2MW HRV MAT DATA';
+
     
     D_asthmaData = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/ASTHMA DATA';
     
