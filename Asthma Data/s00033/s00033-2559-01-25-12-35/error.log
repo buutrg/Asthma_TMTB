@@ -1,0 +1,77 @@
+Please send us the following error report. Provide a brief
+description of what you were doing when this problem occurred.
+E-mail or FAX this information to us at:
+    E-mail:  marwan@pik-potsdam.de
+       Fax:  ++49 +331 288 2508
+Thank you for your assistance.
+
+
+--------------------------------------------------
+06-Apr-2017 14:39:35
+Matlab 9.0.0.341360 (R2016a) on PCWIN64
+Cross Recurrence Plot Toolbox 5.21 (01-Nov-2016)
+--------------------------------------------------
+Error using axes
+While setting the 'Position' property of 'Axes':
+Value must be numeric
+The file 'g:\matlab project\Asthma_TMTB\m files\Collect_data.m' could not be cleared because it contains MATLAB code that is currently executing.
+ during ==> crqa:init
+ method ==> max
+ input ==> double errorcode ==> 3
+ workspace dump ==>
+Name	Size	Bytes	Class
+Clust	1  1	8	double
+Nx	1  1	8	double
+Ny	1  1	8	double
+RTE	1  1	8	double
+Trans	1  1	8	double
+action	1  4	8	char
+argout_index	1  13	104	double
+axes_base	1  1	8	double
+axes_height	1  1	8	double
+axes_hoffset	1  1	8	double
+check_gui	1  3	354	cell
+check_meth	1  10	1160	cell
+check_norm	1  2	236	cell
+e	1  1	8	double
+errcode	1  1	8	double
+flagClass	0  0	0	double
+flag_pdist	1  1	8	double
+h	1  2	120	matlab.graphics.axis.Axes
+h1	5  1	104	matlab.ui.container.Menu
+h2	4  1	520	cell
+h8	1  1	112	matlab.ui.Figure
+hw	1  1	8	double
+i	1  1	8	double
+i_char	1  0	0	double
+i_double	1  14	112	double
+i_int	1  0	0	double
+intclasses	8  1	980	cell
+lmin	1  1	8	double
+logo	1  1	17620	struct
+m	1  1	8	double
+method	1  3	6	char
+method_n	1  1	8	double
+nogui	1  1	8	double
+nonorm	1  1	8	double
+oldunit	1  6	12	char
+props	1  1	36904	struct
+scr	1  4	32	double
+t	1  1	8	double
+temp_gui	1  1	8	double
+temp_meth	1  1	8	double
+temp_norm	1  1	8	double
+theiler_window	1  1	8	double
+time_scale_flag	1  1	8	double
+time_scale_flag_x	1  1	8	double
+undocumented	1  1	8	double
+varargin	1  14	11096	cell
+vmin	1  1	8	double
+w	1  1	8	double
+wstep	1  1	8	double
+x	1347     1	10776	double
+x_var	2  2	32	double
+xscale	1347     1	10776	double
+y	1347     1	10776	double
+y_var	2  2	32	double
+yscale	1347     1	10776	double
