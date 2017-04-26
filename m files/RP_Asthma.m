@@ -1,6 +1,5 @@
 close all;
 
-<<<<<<< HEAD
 if (size(data, 2) == 1)
     data = transpose(data);
 end
@@ -18,10 +17,8 @@ data = [data; data_tmp];
 data = knnimpute(data);
 data = data(1,:);
 % plot(data);
-saveplot = strcat(D_asthDATA, slash, 'HRV_Figure', slash, patient_name, slash, record_name, sprintf('_W%d', wderr-1), '.jpg');
+saveplot = strcat(D_asthDATA, slash, 'HRV_Figure', slash, patient_name, slash, record_name, '.jpg');
 saveas(gcf, saveplot);
-addpath(CRP_tools);
-
 
 kk = data;
 
@@ -38,58 +35,45 @@ kk = data;
 
 % dmsn = find(abs(dy) < 1e-3, 1, 'first')-1;
 dmsn = 5;
-midelay = mi(kk, 10, size(kk,2));
+midelay = mi(kk, 10, size(kk,2), 'silent');
 
 for ii = 1: size(data,2)
     if ((midelay(1, 1, ii) < midelay(1, 1,ii+1)) && (midelay(1, 1, ii) < midelay(1, 1, ii-1)))
-=======
-% data = knnimpute(data);
-
-plot(data);
-
-
-addpath(CRP_tools);
-
-kk = data;
-
-dmsn_tmp = fnn(kk);
-
-dmsn = 1;
-for ii = 1:10
-    if dmsn_tmp(ii) > 0
-        dmsn = ii;
-    else break;
-    end;
-end;
-midelay = mi(kk, 20, 200);
-for ii = 1:200-1
-    if ((midelay(1, 1, ii) < midelay(1, 1,ii+1)) && (midelay(1, 1, ii) > midelay(1, 1, ii-1)))
->>>>>>> 0b3ea19ac3d94282e30f2fb9f4429a276a928103
         checkt = ii;
         break;
     end;
 end;
-<<<<<<< HEAD
 %
 tdelay = checkt;
 
 % [maxd, tmp] = pss(kk, dmsn, 5);
 % eps = 0.1 * maxd;
+thres = 0.1;
 
-tt = crqa(kk, 5, tdelay, 0.1, length(kk), 1, 'fan', 'nogui');
-=======
+tt = crqa(kk, 5, tdelay, thres, length(kk), 1, 'fan', 'nogui', 'silent');
 
-tdelay = checkt;
-[maxd, tmp] = pss(kk, dmsn, tdelay);
-eps = 0.1 * maxd;
-
-tt = crqa(kk, dmsn, tdelay, eps, 'euc', 'nogui');
->>>>>>> 0b3ea19ac3d94282e30f2fb9f4429a276a928103
+close all;
+R = crp(data, 5, tdelay, 0.1, 'fan', 'nogui', 'silent');
+spy_tmtb(R);
+saveplot = strcat(D_asthDATA, slash, 'Recurrence Plot', slash, patient_name, slash, record_name, '.jpg');
+saveas(gcf, saveplot);
 %         -----------------------------------
+severity_tmp = record_name(26:27);
+switch severity_tmp
+    case 'C0'
+        severity = 'NORMAL';
+    case 'C1'
+        severity = 'MILD/ MODERATE';
+    case 'C2'
+        severity = 'ACUTE/ SEVERE';
+    case 'C3'
+        severity = 'LIFE THREATENING';
+end;
+
 FILE = fopen(output, 'a');
 % fprintf(FILE, '%s\t', sprintf('%04d',m_section));
 fprintf(FILE, '%s \t', record_name);
-fprintf(FILE, '%d \t %d \t %d \t %3.2f \t', wderr-1, dmsn, tdelay, eps);
+fprintf(FILE, '%s \t %d \t %s \t %d \t %d \t %3.2f \t', wderr, length(kk), severity, dmsn, tdelay, thres);
 fprintf(FILE, '%d \t', tt);
 fprintf(FILE, '\n');
 fclose(FILE);

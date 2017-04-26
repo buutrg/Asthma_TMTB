@@ -1,6 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%Configuring%%%%%%%%%%%%%%
 clc;
-<<<<<<< HEAD
 clear variables; 
 close all;
 addpath('/mnt/LinuxDrive/matlab project/Asthma_TMTB/m files');
@@ -13,17 +12,6 @@ PatientList = {PatientList.name}';
 startindex=3;
 endindex=size(PatientList,1) - 2;
 
-=======
-clear all; close all;
-addpath('/mnt/LinuxDrive/matlab project/Asthma_TMTB/m files');
-run('Config.m');
-
-cd(D_2min);
-startindex=3;endindex=179;
-PatientList = dir;
-PatientList = {PatientList.name}';
-mkdir(strcat(D_asthDATA, slash, 'Result'));
->>>>>>> 0b3ea19ac3d94282e30f2fb9f4429a276a928103
 
 for t = startindex : endindex
     %     clear all;
@@ -86,12 +74,8 @@ for t = startindex : endindex
                 fprintf(FILE, '%s \t', record_name);
                 fprintf(FILE, '\n');
                 fclose(FILE);
-<<<<<<< HEAD
-            else
-                run RP_Asthma.m
-=======
+
             else  run RP_Asthma.m
->>>>>>> 0b3ea19ac3d94282e30f2fb9f4429a276a928103
             end
         end
         

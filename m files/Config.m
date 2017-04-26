@@ -8,18 +8,7 @@
 % 1: windows cua Ngan
 % 2: windows cua Buu
 % 3: ubuntu cua Buu
-<<<<<<< HEAD
 choose_tmp = 3;
-
-if choose_tmp == 1;
-    D_Asthma_Detection = 'E:\Buu';
-    D_generateData = 'E:\Buu\GENERATE DATA CODE';
-    D_AsthmaEXA = 'E:\Buu\Asthma Exacerbation Extraction';
-    
-    % Create new folder
-    D_asthDATA = 'E:\Buu\Asthma Data'; %save 2min files
-=======
-choose_tmp = 1;
 
 if choose_tmp == 1;
     D_Asthma_Detection = 'D:\Buu';
@@ -28,7 +17,7 @@ if choose_tmp == 1;
     m_files = 'D:\Buu\m files'
     % Create new folder
     D_asthDATA = 'D:\Buu\Asthma Data'; %save 2min files
->>>>>>> 0b3ea19ac3d94282e30f2fb9f4429a276a928103
+
     
     % In database folder
     % D_patientFolder = 'D:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE';
@@ -41,11 +30,8 @@ if choose_tmp == 1;
     D_nRecords = 'D:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE\PRE_GENERATED RECORD';
     D_asthmaData = 'D:\MIMIC II WAVEFORM DATABASE\ASTHMA DATA';
     slash = '\';
-<<<<<<< HEAD
-    wfdb_toolbox = 'E:\Buu\wfdb-app-toolbox-0-9-9\mcode';
-=======
+
     wfdb_toolbox = 'D:\Buu\wfdb-app-toolbox-0-9-9\mcode';
->>>>>>> 0b3ea19ac3d94282e30f2fb9f4429a276a928103
     addpath(wfdb_toolbox);
     
 end
@@ -91,12 +77,9 @@ if choose_tmp == 3
     D_patientFolder = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/RAW MIMIC II DATABASE';
     D_info='/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/RAW MIMIC II DATABASE/INFO';
     D_nRecords = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/RAW MIMIC II DATABASE/PRE_GENERATED RECORD';
-<<<<<<< HEAD
+
+%     D_2min = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/2 MINUTES WINDOW DATA/2MW HRV MAT DATA';    
     D_2min = '/home/thanhbuu/2MW ORIGINAL HRV TXT/ECG HRV Text';
-=======
-    D_2min = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/2 MINUTES WINDOW DATA/2MW HRV MAT DATA';
->>>>>>> 0b3ea19ac3d94282e30f2fb9f4429a276a928103
-    
     
     D_asthmaData = '/mnt/LinuxDrive/MIMIC II WAVEFORM DATABASE/ASTHMA DATA';
     

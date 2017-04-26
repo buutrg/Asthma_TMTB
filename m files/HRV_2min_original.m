@@ -1,63 +1,59 @@
 %%%%%%%%%%%%%%%%%%%%Configuring%%%%%%%%%%%%%%
 clc;
-clear variables;
+% clear variables;
 close all;
 addpath('/mnt/LinuxDrive/matlab project/Asthma_TMTB/m files');
 run Config.m;
+addpath(CRP_tools);
 
-% cd(D_2min);
+cd(D_2min);
 
 PatientList = dir;
 PatientList = {PatientList.name}';
-startindex=3;
+startindex=;
 endindex=size(PatientList,1);
 %
 
 for t = startindex : endindex
-
+    %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     data = load(PatientList{t});
     
-    tmp1 = char(PatientList{t});
-    patient_name = tmp1(1:6);
+    record_name = char(PatientList{t});
+    patient_name = record_name(1:6);
+    wderr = record_name(19:20);
     
     %create file
     
     mkdir(strcat(D_asthDATA, slash, 'HRV_Figure', slash, patient_name));
     mkdir(strcat(D_asthDATA, slash, 'Result', slash, patient_name));
-    output = strcat(D_asthDATA, slash, 'Result', slash, patient_name, slash, tmp1, '.csv');
-    FILE = fopen(output, 'w');
-    firstline = ['Record Name \t Window \t Dimension \t Time delay \t Epsilon \t ',...
-        'Recurrence rate \t Determinism \t  Averaged diagonal length \t ', ...
-        'Length of longest diagonal line \t Entropy of diagonal length \t ',...
-        'Laminarity \t Trapping time \t Length of longest vertical line \t ',...
-        'Recurrence time of 1st type \t Recurrence time of 2nd type \t ',...
-        'Recurrence period density entropy \t Clustering coefficient \t ',...
-        'Transitivity \n'];
-    fprintf(FILE,firstline,'\n');
-    fclose(FILE);
+    mkdir(strcat(D_asthDATA, slash, 'Recurrence Plot', slash, patient_name));
+    output = strcat(D_asthDATA, slash, 'Result', slash, patient_name, '.csv');
     
+    if (exist(output, 'file') ~= 2)
+        
+        FILE = fopen(output, 'w');
+        firstline = ['Record Name \t Window \t Number of samples \t Severity \t Dimension \t Time delay \t Threshold \t ',...
+            'Recurrence rate \t Determinism \t  Averaged diagonal length \t ', ...
+            'Length of longest diagonal line \t Entropy of diagonal length \t ',...
+            'Laminarity \t Trapping time \t Length of longest vertical line \t ',...
+            'Recurrence time of 1st type \t Recurrence time of 2nd type \t ',...
+            'Recurrence period density entropy \t Clustering coefficient \t ',...
+            'Transitivity \n'];
+        fprintf(FILE,firstline,'\n');
+        fclose(FILE);
+    end;
     fprintf('\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n');
-    fprintf('Testing on patient                            %s\n', patient_name);
+    fprintf('Patient No.                        %s\n', patient_name);
     
+    fprintf('-- Record: %s - Window %s\n', record_name,wderr);
+    %     if isempty(data)
+    %         FILE = fopen(output, 'a');
+    %         fprintf(FILE, '%s \t', record_name);
+    %         fprintf(FILE, '\n');
+    %         fclose(FILE);
+    %     else
+    %         run RP_Asthma.m
+    %     end
+    run RP_Asthma.m
     
-    for idxptlist = 2 : size(recHRV, 1)
-        data1 = recHRV{idxptlist, 2};
-        record_name = char(recHRV(idxptlist, 1));
-        data2 = [];
-        
-        for wderr = 2 : size(data1, 1)
-            data = data1{wderr, 2};
-            
-            fprintf('-- Record: %s - Window %d\n', record_name,wderr-1);
-            if isempty(data)
-                FILE = fopen(output, 'a');
-                fprintf(FILE, '%s \t', record_name);
-                fprintf(FILE, '\n');
-                fclose(FILE);
-            else
-                run RP_Asthma.m
-            end
-        end
-        
-    end
 end
