@@ -9,49 +9,38 @@ addpath(CRP_tools);
 cd(D_2min);
 
 PatientList = dir;
-PatientList = {PatientList.name}';
-startindex=;
+PatientList = {PatientList.name}.';
+startindex=4;
 endindex=size(PatientList,1);
-%
 
-for t = startindex : endindex
-<<<<<<< HEAD
-    %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-=======
+%% List index of patients' name
+names = [];
+
+for i = 4 : size(PatientList, 1)
+    xx = PatientList{i}(1:6);
+    yy = PatientList{i-1}(1:6);
+    if (~strcmp(xx,yy))
+        names = [names i];
+    end;
+end
+
+names = [names size(PatientList, 1)];
+
+tmp = diff(names);
+[names1, Index] = sort(tmp);
+
+%% Processing
+for ptn_tmp = 2 : size(names, 2)-1
     
->>>>>>> f48dcab8d6696698ab8ed249b1f766259b847d5e
-    data = load(PatientList{t});
-    
-    record_name = char(PatientList{t});
-    patient_name = record_name(1:6);
-    wderr = record_name(19:20);
-    
-    %create file
+    ptn = Index(ptn_tmp);
+    patient_name = PatientList{names(ptn)}(1:6);
     
     mkdir(strcat(D_asthDATA, slash, 'HRV_Figure', slash, patient_name));
     mkdir(strcat(D_asthDATA, slash, 'Result', slash, patient_name));
-<<<<<<< HEAD
     mkdir(strcat(D_asthDATA, slash, 'Recurrence Plot', slash, patient_name));
-    output = strcat(D_asthDATA, slash, 'Result', slash, patient_name, '.csv');
-=======
-    output = strcat(D_asthDATA, slash, 'Result', slash, patient_name, '.csv');
     
-    if (exist(output, 'file') == 2)
-        iswrite = 'a';
-    else iswrite = 'w';
-    end;
-    FILE = fopen(output, iswrite);
-    firstline = ['Record Name \t Window \t Data size \t Dimension \t Time delay \t Threshold \t ',...
-        'Recurrence rate \t Determinism \t  Averaged diagonal length \t ', ...
-        'Length of longest diagonal line \t Entropy of diagonal length \t ',...
-        'Laminarity \t Trapping time \t Length of longest vertical line \t ',...
-        'Recurrence time of 1st type \t Recurrence time of 2nd type \t ',...
-        'Recurrence period density entropy \t Clustering coefficient \t ',...
-        'Transitivity \n'];
-    fprintf(FILE,firstline,'\n');
-    fclose(FILE);
->>>>>>> f48dcab8d6696698ab8ed249b1f766259b847d5e
-    
+    output = strcat(D_asthDATA, slash, 'Result', slash, patient_name, '.csv');
+    error_output = strcat(D_asthDATA, slash, 'Result', slash, 'ERROR', '.txt');
     if (exist(output, 'file') ~= 2)
         
         FILE = fopen(output, 'w');
@@ -66,24 +55,28 @@ for t = startindex : endindex
         fclose(FILE);
     end;
     fprintf('\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n');
+    
     fprintf('Patient No.                        %s\n', patient_name);
     
-<<<<<<< HEAD
-    fprintf('-- Record: %s - Window %s\n', record_name,wderr);
-    %     if isempty(data)
-    %         FILE = fopen(output, 'a');
-    %         fprintf(FILE, '%s \t', record_name);
-    %         fprintf(FILE, '\n');
-    %         fclose(FILE);
-    %     else
-    %         run RP_Asthma.m
-    %     end
-    run RP_Asthma.m
     
-=======
-    wderr = str2double(tmp1(19:20));
     
-    fprintf('-- Record: %s - Window %d\n', record_name,wderr);
-    run RP_Asthma.m
->>>>>>> f48dcab8d6696698ab8ed249b1f766259b847d5e
+    %% Run RP
+    for t = names(ptn) : names(ptn+1)
+        %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        data = load(PatientList{t});
+        
+        record_name = char(PatientList{t});
+        wderr = record_name(19:20);
+        
+        fprintf('-- Record: %s - Window %s\n', record_name,wderr);
+        
+        try
+            run RP_Asthma.m
+        catch
+            FILE = fopen(error_output, 'a');
+            fprintf(FILE, '%s \n', record_name);
+            fclose(FILE);
+        end
+        
+    end
 end
