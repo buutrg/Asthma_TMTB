@@ -1,0 +1,4 @@
+addpath('g:\matlab project\m files');
+% tt = mtbi_extraction('chb02_16.edf(1).mat', 33280+1, 76801);
+% tt = mtbi_extraction('chb01_03.edf(1).mat', 76801+1, 76801);
+% tt = mtbi_extraction('chb03_34.edf(1).mat', 76801+1, 76801);

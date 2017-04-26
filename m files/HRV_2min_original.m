@@ -15,7 +15,11 @@ endindex=size(PatientList,1);
 %
 
 for t = startindex : endindex
+<<<<<<< HEAD
     %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+=======
+    
+>>>>>>> f48dcab8d6696698ab8ed249b1f766259b847d5e
     data = load(PatientList{t});
     
     record_name = char(PatientList{t});
@@ -26,8 +30,27 @@ for t = startindex : endindex
     
     mkdir(strcat(D_asthDATA, slash, 'HRV_Figure', slash, patient_name));
     mkdir(strcat(D_asthDATA, slash, 'Result', slash, patient_name));
+<<<<<<< HEAD
     mkdir(strcat(D_asthDATA, slash, 'Recurrence Plot', slash, patient_name));
     output = strcat(D_asthDATA, slash, 'Result', slash, patient_name, '.csv');
+=======
+    output = strcat(D_asthDATA, slash, 'Result', slash, patient_name, '.csv');
+    
+    if (exist(output, 'file') == 2)
+        iswrite = 'a';
+    else iswrite = 'w';
+    end;
+    FILE = fopen(output, iswrite);
+    firstline = ['Record Name \t Window \t Data size \t Dimension \t Time delay \t Threshold \t ',...
+        'Recurrence rate \t Determinism \t  Averaged diagonal length \t ', ...
+        'Length of longest diagonal line \t Entropy of diagonal length \t ',...
+        'Laminarity \t Trapping time \t Length of longest vertical line \t ',...
+        'Recurrence time of 1st type \t Recurrence time of 2nd type \t ',...
+        'Recurrence period density entropy \t Clustering coefficient \t ',...
+        'Transitivity \n'];
+    fprintf(FILE,firstline,'\n');
+    fclose(FILE);
+>>>>>>> f48dcab8d6696698ab8ed249b1f766259b847d5e
     
     if (exist(output, 'file') ~= 2)
         
@@ -45,6 +68,7 @@ for t = startindex : endindex
     fprintf('\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n');
     fprintf('Patient No.                        %s\n', patient_name);
     
+<<<<<<< HEAD
     fprintf('-- Record: %s - Window %s\n', record_name,wderr);
     %     if isempty(data)
     %         FILE = fopen(output, 'a');
@@ -56,4 +80,10 @@ for t = startindex : endindex
     %     end
     run RP_Asthma.m
     
+=======
+    wderr = str2double(tmp1(19:20));
+    
+    fprintf('-- Record: %s - Window %d\n', record_name,wderr);
+    run RP_Asthma.m
+>>>>>>> f48dcab8d6696698ab8ed249b1f766259b847d5e
 end
