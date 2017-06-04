@@ -8,13 +8,13 @@
 % 1: windows cua Ngan
 % 2: windows cua Buu
 % 3: ubuntu cua Buu
-choose_tmp = 3;
+choose_tmp = 2;
 
-if choose_tmp == 1;
+if choose_tmp == 1
     D_Asthma_Detection = 'D:\Buu';
     D_generateData = 'D:\Buu\GENERATE DATA CODE';
     D_AsthmaEXA = 'D:\Buu\Asthma Exacerbation Extraction';
-    m_files = 'D:\Buu\m files'
+    m_files = 'D:\Buu\m files';
     % Create new folder
     D_asthDATA = 'D:\Buu\Asthma Data'; %save 2min files
 
@@ -36,14 +36,14 @@ if choose_tmp == 1;
     
 end
 if choose_tmp == 2
-    D_Asthma_Detection = 'g:\matlab project\Asthma_TMTB';
-    D_generateData = 'g:\matlab project\Asthma_TMTB\GENERATE DATA CODE';
-    D_AsthmaEXA = 'g:\matlab project\Asthma_TMTB\Asthma Exacerbation Extraction';
-    m_files = 'g:\matlab project\Asthma_TMTB\m files';
+    D_Asthma_Detection = 'G:\Computational Research\Asthma_TMTB';
+    D_generateData = 'G:\Computational Research\Asthma_TMTB\GENERATE DATA CODE';
+    D_AsthmaEXA = 'G:\Computational Research\Asthma_TMTB\Asthma Exacerbation Extraction';
+    m_files = 'G:\Computational Research\Asthma_TMTB\m files';
     
     % Create new folder
     % D_asthDATA = 'D:\Project\Asthma Detection\Asthma Data'; %save 2min files
-    D_asthDATA = 'g:\matlab project\Asthma_TMTB\Asthma Data'; %save 2min files
+    D_asthDATA = 'G:\Computational Research\Asthma_TMTB\Asthma Data'; %save 2min files
     
     % In database folder
     % D_patientFolder = 'D:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE';
@@ -56,12 +56,13 @@ if choose_tmp == 2
     D_nRecords = 'g:\MIMIC II WAVEFORM DATABASE\RAW MIMIC II DATABASE\PRE_GENERATED RECORD';
     
     D_asthmaData = 'g:\MIMIC II WAVEFORM DATABASE\ASTHMA DATA';
+    D_2min = '/home/thanhbuu/2MW ORIGINAL HRV TXT/ECG HRV Text';
     
     slash = '\';
-    wfdb_toolbox = 'g:\matlab project\m files\wfdb-app-toolbox-0-9-9\mcode\';
+    wfdb_toolbox = 'G:\Computational Research\m files\wfdb-app-toolbox-0-9-9\mcode\';
     addpath(wfdb_toolbox);
     
-    CRP_tools = 'g:\matlab project\CRP toolbox\crptool';
+    CRP_tools = 'G:\Computational Research\CRP toolbox\crptool';
     
 end;
 
